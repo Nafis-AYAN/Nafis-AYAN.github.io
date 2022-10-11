@@ -13,13 +13,15 @@
         <div class="container">
             <nav>
                 <img src="Images/logo.png" alt="logo.png" class="logo">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Contact</a></li>
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#Certificates">Certificates</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-regular fa-circle-xmark" onclick="closemenu()"></i>
                 </ul>
+                <i class="fas fa-solid fa-bars" onclick="openmenu()"></i>
             </nav>
             <div class="header-text">
                 <p>Web Developer</p>
@@ -47,7 +49,7 @@
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
                         <p class="tab-links" onclick="opentab('education')">Education</p>
                         <p class="tab-links" onclick="opentab('achievement')">Achievement</p>
-                        <p class="tab-links" onclick="opentab('extracurricular')">Extracurricular</p>
+                        <p class="tab-links" onclick="opentab('extracurricular')">Cocurricular</p>
                     </div>
                     <!-------------Skills--------------->
                     <div class="tab-contents active-tab" id="skills"> 
@@ -196,7 +198,39 @@
 
 <div id="contact">
     <div class="container">
-        
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i>nsayan0408@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>+8801989228154</p>
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/nafissadique.ayan.92/"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://github.com/Nafis-AYAN/"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/nafis.sadique.ayan/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/nafis-sadique-ayan/"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/Nafis-AYAN/"><i class="fa-brands fa-github"></i></a>
+                    <!-- <a href=""><i class="fa-brands fa-discord"></i></a> -->
+                </div>
+                <a href="CV/CV.pdf" download class="button btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="button btn2">Submit</button>
+                </form>
+                <span id="msg">
+                    <!-- --- msg on script --- -->
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------------------------------------footer----------------------------------- -->
+
+    <div class="copyright">
+        <p>copyright © Nafis Sadique Ayan. Made with <i class="fa-solid fa-heart"></i></p>
     </div>
 </div>
 
@@ -219,5 +253,37 @@
         }
 
     </script>
+
+    <script>
+
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu(){
+            sidemenu.style.right = "0"
+        }
+        function closemenu(){
+            sidemenu.style.right = "-200px"
+        }
+
+    </script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwTWQmzFbZSYJKfoNe1HoGjRsbqrQlmUzMpgcoNqaHMoMKEs1RkCEl84WvUQQ-hQjpE/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {msg.innerHTML = "Sent Successfully!"
+        setTimeout(function(){
+            msg.innerHTML = ""
+        },3000)
+        form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+  
 </body>
 </html>
