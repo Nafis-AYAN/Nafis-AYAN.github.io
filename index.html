@@ -288,6 +288,17 @@
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+
+  <script>
+    const parallax = document.getElementById("header");
+
+    window.addEventListener("scroll", function()
+    {
+        let offset = window.pageYOffset;
+        parallax.style.backgroundPositionY = offset 
+        * 0.7 + "px";
+    })
+  </script>
   
 </body>
 </html>
