@@ -19,6 +19,7 @@ To view portfolio run
 ## Features
 
 - Responsive webpage
+- Parallax effect 
 
 
  
